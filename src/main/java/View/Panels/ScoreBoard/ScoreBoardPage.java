@@ -1,5 +1,6 @@
 package View.Panels.ScoreBoard;
 
+import Controller.Controller;
 import Util.Constants.Constant;
 import Util.OtherClasses.LengthOfMessage;
 
@@ -13,46 +14,48 @@ public class ScoreBoardPage extends JPanel {
     private int width;
     private int height;
     private JScrollPane jScrollPane;
-    private boolean repaint;
+    private volatile boolean repaint;
 
-    private ArrayList<String> userNames;
-    private ArrayList<Boolean> onlineStatus;
-    private ArrayList<Integer> points;
+
+    private static ScoreBoardPage scoreBoardPage = new ScoreBoardPage();
+
+    public static ScoreBoardPage getInstance() {
+        return scoreBoardPage;
+    }
 
     public ScoreBoardPage() {
+
         width = Constant.widthOfMainFrame;
         height = 5 * Constant.heightOfMainFrame;
         setSize(width, height);
-        setJScrollPane(new JScrollPane(this));
+//        setJScrollPane(new JScrollPane(this));
         setLayout(null);
-        userNames = new ArrayList<>();
-        onlineStatus = new ArrayList<>();
-        points = new ArrayList<>();
 
     }
-
 
     @Override
-    protected void paintComponent(Graphics g) {
-
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-
-        drawScoreBoardPage(userNames, onlineStatus, points, graphics2D);
-
+        Controller.getCurrentClient().sendShowScoreBoardRequest();
+        drawScoreBoardPage(Controller.getUserNames(), Controller.getOnlineStatus(), Controller.getPoints(), graphics2D);
     }
+
 
     private void drawScoreBoardPage(ArrayList<String> names, ArrayList<Boolean> onlineStatus,
                                     ArrayList<Integer> points, Graphics2D g2d) {
 
 
-        g2d.setFont(new Font("TimesRoman", Font.ITALIC, 50));
+        g2d.setFont(new Font("TimesRoman", Font.ITALIC, 10));
         g2d.setColor(Color.red);
 
-        int ySpace = Constant.heightOfMainFrame / (names.size()+1);
+        int ySpace = Constant.heightOfMainFrame / (names.size() + 1);
         String xSpace = "";
-        for (int i = 0; i < Constant.widthOfMainFrame / 4; i++) {
+        for (int i = 0; i < 20; i++) {
             xSpace = xSpace + " ";
         }
+
+        System.out.println(names.size());
         for (int i = 0; i < names.size(); i++) {
             String playerState = names.get(i) + xSpace + onlineStatus.get(i) + xSpace + points.get(i);
             int xCoordinate = (Constant.widthOfMainFrame - LengthOfMessage.lengthOfMessage(playerState, g2d)) / 2;
@@ -78,31 +81,10 @@ public class ScoreBoardPage extends JPanel {
 
     public void setRepaint(boolean repaint) {
         this.repaint = repaint;
+        System.out.println(repaint + " " + this.repaint);
     }
 
-    public ArrayList<String> getUserNames() {
-        return userNames;
-    }
 
-    public void setUserNames(ArrayList<String> userNames) {
-        this.userNames = userNames;
-    }
-
-    public ArrayList<Boolean> getOnlineStatus() {
-        return onlineStatus;
-    }
-
-    public void setOnlineStatus(ArrayList<Boolean> onlineStatus) {
-        this.onlineStatus = onlineStatus;
-    }
-
-    public ArrayList<Integer> getPoints() {
-        return points;
-    }
-
-    public void setPoints(ArrayList<Integer> points) {
-        this.points = points;
-    }
 
 
 }

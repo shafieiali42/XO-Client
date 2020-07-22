@@ -118,6 +118,7 @@ public class MainMenuPage extends JPanel {
         scoreBoardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Controller.getCurrentClient().sendShowScoreBoardRequest();
                 ScoreBoardPage scoreBoardPage=new ScoreBoardPage();
                 ClientMain.getMyMainFrame().setContentPane(scoreBoardPage);
 

@@ -1,6 +1,9 @@
 package RequestAndResponse.Response;
 
+import Controller.Controller;
+import Main.ClientMain;
 import Model.Player.Player;
+import View.Panels.ScoreBoard.ScoreBoardPage;
 
 import java.util.ArrayList;
 
@@ -43,6 +46,14 @@ public class ScoreBoardResponse extends Response {
     @Override
     public void execute() {
 
+        Controller.setUserNames(userNames);
+        Controller.setOnlineStatus(onlineStatus);
+        Controller.setPoints(points);
+
+
+        ScoreBoardPage.getInstance().setRepaint(true);
+        ScoreBoardPage.getInstance().repaint();
+        ScoreBoardPage.getInstance().revalidate();
 
     }
 

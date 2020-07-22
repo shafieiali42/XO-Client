@@ -57,7 +57,7 @@ public class Client extends Thread {
             while (true) {
                 while (myScanner.hasNextLine()) {
                     String text = myScanner.nextLine();
-                    System.out.println(text);
+
                     switch (counter % 3) {
                         case 0:
                             authtoken = text;
