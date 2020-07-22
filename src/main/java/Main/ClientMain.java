@@ -17,8 +17,9 @@ public class ClientMain {
     }
 
     public static void main(String[] args) {
-        Client client = new Client("localhost", 8585);
+        Client client = new Client("localhost", 1010);
         Controller.setCurrentClient(client);
+        Controller.getCurrentClient().start();
         myMainFrame.setContentPane(new LogInPage());
 
     }

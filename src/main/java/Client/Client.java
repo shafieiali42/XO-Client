@@ -1,20 +1,22 @@
 package Client;
 
 import Model.Player.Player;
-import RequestAndResponse.Requests.LogInRequest;
-import RequestAndResponse.Requests.Request;
-import RequestAndResponse.Requests.JsonDeSerializerForRequest;
+import RequestAndResponse.Requests.*;
 import RequestAndResponse.Response.JsonDeSerializerForResponse;
 import RequestAndResponse.Response.Response;
+import Util.Constants.Constant;
+import Util.OtherClasses.LengthOfMessage;
 import com.google.gson.Gson;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
-public class Client  extends Thread{
+public class Client extends Thread {
 
 
     private Player player;
@@ -27,14 +29,17 @@ public class Client  extends Thread{
     public Client() {
         this.responses = new ArrayList<>();
     }
+
     public Client(String serverIp, int serverPort) {
         try {
             socket = new Socket(serverIp, serverPort);
             this.responses = new ArrayList<>();
+            authtoken = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public Client(Player player) {
         super();
         this.player = player;
@@ -43,32 +48,34 @@ public class Client  extends Thread{
 
     @Override
     public void run() {
-        int counter=0;
+        int counter = 0;
         try {
-            Scanner myScanner=new Scanner(socket.getInputStream());
-            String authtoken="";
-            String responseName="";
-            String message="";
+            Scanner myScanner = new Scanner(socket.getInputStream());
+            String authtoken = "";
+            String responseName = "";
+            String message = "";
+            while (true) {
+                while (myScanner.hasNextLine()) {
+                    String text = myScanner.nextLine();
+                    System.out.println(text);
+                    switch (counter % 3) {
+                        case 0:
+                            authtoken = text;
+                            break;
+                        case 1:
+                            responseName = text;
+                            break;
+                        case 2:
+                            message = text;
+                            Response response = JsonDeSerializerForResponse.deSerializeResponse(authtoken, responseName, message);
+                            this.responses.add(response);
+                            executeResponse();
+                            break;
+                    }
+                    counter++;
 
-            while (myScanner.hasNextLine()) {
-                String text = myScanner.nextLine();
-                switch (counter % 3) {
-                    case 0:
-                        authtoken = text;
-                        break;
-                    case 1:
-                        responseName = text;
-                        break;
-                    case 2:
-                        message = text;
-                        Response response = JsonDeSerializerForResponse.deSerializeResponse(responseName, message);
-                        this.responses.add(response);
-                        executeResponse();
-                        break;
+
                 }
-                counter++;
-
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,11 +83,15 @@ public class Client  extends Thread{
     }
 
 
-    public void executeResponse(){
-        for (Response response:responses){
+    public void executeResponse() {
+        Iterator<Response> itr = responses.iterator();
+        while (itr.hasNext()) {
+            Response response = itr.next();
             response.execute();
+            itr.remove();
         }
     }
+
 
     private void sendRequest(String authtoken, String requestName, String request) {
         PrintStream printStream = null;
@@ -90,17 +101,31 @@ public class Client  extends Thread{
             printStream.println(requestName);
             printStream.println(request);
             printStream.flush();
-            printStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void sendLogInRequest(String userName, String password, String mode) {
-        Request request = new LogInRequest(userName, password, mode);
+    public void sendLogOutRequest() {
+        System.out.println("send logout request");
+        Request request = new LogOutRequest(this.authtoken);
         String message = new Gson().toJson(request);
-        sendRequest(authtoken,"LogInRequest",message);
+        sendRequest(authtoken, "LogOutRequest", message);
+
+    }
+
+    public void sendLogInRequest(String userName, String password, String mode) {
+        Request request = new LogInRequest(authtoken, userName, password, mode);
+        String message = new Gson().toJson(request);
+        sendRequest(authtoken, "LogInRequest", message);
+    }
+
+
+    public void sendShowScoreBoardRequest(){
+        Request request=new ScoreBoardRequest(authtoken);
+        String message=new Gson().toJson(request);
+        sendRequest(authtoken,"ScoreBoardRequest",message);
     }
 
 
@@ -115,5 +140,11 @@ public class Client  extends Thread{
         this.player = player;
     }
 
+    public String getAuthtoken() {
+        return authtoken;
+    }
 
+    public void setAuthtoken(String authtoken) {
+        this.authtoken = authtoken;
+    }
 }

@@ -1,7 +1,11 @@
 package View.Panels.MainMenu;
 
+import Controller.Controller;
+import Main.ClientMain;
 import Util.Config.ConfigLoader;
 import Util.Constants.Constant;
+import View.Panels.ScoreBoard.ScoreBoardPage;
+import View.Panels.StatusPanel.StatusPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +45,7 @@ public class MainMenuPage extends JPanel {
 
 
     private void initButtons() {
+        initMenuPanel();
         initMultiPlayerBtn();
         initScoreBoardBtn();
         initStatusBtn();
@@ -59,7 +64,7 @@ public class MainMenuPage extends JPanel {
         logOutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Controller.getCurrentClient().sendLogOutRequest();
             }
         });
         menuPanel.add(logOutBtn);
@@ -76,7 +81,8 @@ public class MainMenuPage extends JPanel {
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Controller.getCurrentClient().sendLogOutRequest();
+                System.exit(0);
             }
         });
         menuPanel.add(exitBtn);
@@ -92,7 +98,9 @@ public class MainMenuPage extends JPanel {
         statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                StatusPage statusPage=new StatusPage();
+                ClientMain.getMyMainFrame().setContentPane(statusPage);
+                Controller.showStatus(Controller.getCurrentClient().getPlayer(),statusPage);
             }
         });
         menuPanel.add(statusBtn);
@@ -101,7 +109,7 @@ public class MainMenuPage extends JPanel {
 
 
     private void initScoreBoardBtn() {
-        scoreBoardBtn = new JButton("Collection");
+        scoreBoardBtn = new JButton("ScoreBoard");
         scoreBoardBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         scoreBoardBtn.setForeground(Color.RED);
         scoreBoardBtn.setBackground(colorOfBtn);
@@ -110,6 +118,9 @@ public class MainMenuPage extends JPanel {
         scoreBoardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ScoreBoardPage scoreBoardPage=new ScoreBoardPage();
+                ClientMain.getMyMainFrame().setContentPane(scoreBoardPage);
+
 
             }
         });
@@ -138,8 +149,8 @@ public class MainMenuPage extends JPanel {
     private void initMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setLayout(null);
-        menuPanel.setSize(new Dimension(this.getWidth() / 2, this.getHeight()));
-        menuPanel.setBounds(this.getWidth() / 4, 0, menuPanel.getWidth(), menuPanel.getHeight());
+        menuPanel.setSize(new Dimension(this.getWidth(), this.getHeight()));
+        menuPanel.setBounds(0, 0, menuPanel.getWidth(), menuPanel.getHeight());
         menuPanel.setBackground(colorOfBtn);
     }
 

@@ -9,12 +9,13 @@ import View.Panels.MainMenu.MainMenuPage;
 
 import javax.swing.*;
 
-public class LogInResponse implements Response {
+public class LogInResponse extends Response {
 
     private Player player;
 
 
-    public LogInResponse(Player player) {
+    public LogInResponse(Player player, String authtoken) {
+        this.setReceiver(authtoken);
         this.player = player;
     }
 
@@ -23,6 +24,7 @@ public class LogInResponse implements Response {
     public void execute() {
         if (player != null) {
             Controller.getCurrentClient().setPlayer(player);
+            Controller.getCurrentClient().setAuthtoken(this.getReceiver());
             ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
         } else {
             JOptionPane.showMessageDialog(null, "LogInError", "Error", JOptionPane.ERROR_MESSAGE);
@@ -36,6 +38,7 @@ public class LogInResponse implements Response {
     public Player getPlayer() {
         return player;
     }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
