@@ -2,7 +2,6 @@ package View.Panels.MainMenu;
 
 import Controller.Controller;
 import Main.ClientMain;
-import Util.Config.ConfigLoader;
 import Util.Constants.Constant;
 import View.Panels.ScoreBoard.ScoreBoardPage;
 import View.Panels.StatusPanel.StatusPage;
@@ -22,7 +21,7 @@ public class MainMenuPage extends JPanel {
     private JButton multiPlayer;
     private JButton scoreBoardBtn;
     private JButton statusBtn;
-    private JButton logOutBtn;
+    private JButton screenRecordBtn;
     private JButton exitBtn;
 
     private int width;
@@ -49,25 +48,25 @@ public class MainMenuPage extends JPanel {
         initMultiPlayerBtn();
         initScoreBoardBtn();
         initStatusBtn();
-        initLogOutBtn();
+        initScreenRecordBtn();
         initExitBtn();
     }
 
 
-    private void initLogOutBtn() {
-        logOutBtn = new JButton("LogOut");
-        logOutBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
-        logOutBtn.setForeground(colorOfTextOfBtn);
-        logOutBtn.setBackground(colorOfBtn);
-        logOutBtn.setSize(this.getWidth(), this.getHeight() / 5);
-        logOutBtn.setBounds(0, menuPanel.getHeight() * 3 / 5, logOutBtn.getWidth(), logOutBtn.getHeight());
-        logOutBtn.addActionListener(new ActionListener() {
+    private void initScreenRecordBtn() {
+        screenRecordBtn = new JButton("ScreenRecord");
+        screenRecordBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
+        screenRecordBtn.setForeground(colorOfTextOfBtn);
+        screenRecordBtn.setBackground(colorOfBtn);
+        screenRecordBtn.setSize(this.getWidth(), this.getHeight() / 5);
+        screenRecordBtn.setBounds(0, menuPanel.getHeight() * 3 / 5, screenRecordBtn.getWidth(), screenRecordBtn.getHeight());
+        screenRecordBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendLogOutRequest();
+
             }
         });
-        menuPanel.add(logOutBtn);
+        menuPanel.add(screenRecordBtn);
 
     }
 

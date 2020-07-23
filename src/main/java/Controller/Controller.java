@@ -14,9 +14,18 @@ public class Controller {
     private static ArrayList<String> userNames=new ArrayList<>();
     private static ArrayList<Boolean> onlineStatus=new ArrayList<>();
     private static ArrayList<Integer> points=new ArrayList<>();
+    private static boolean needRepaintScoreBoard;
 
 
 
+
+    public static boolean isNeedRepaintScoreBoard() {
+        return needRepaintScoreBoard;
+    }
+
+    public static void setNeedRepaintScoreBoard(boolean needRepaintScoreBoard) {
+        Controller.needRepaintScoreBoard = needRepaintScoreBoard;
+    }
 
     public static ArrayList<String> getUserNames() {
         return userNames;
@@ -53,14 +62,7 @@ public class Controller {
     }
 
 
-    public static void showScoreBoard(){
 
-
-
-
-
-
-    }
 
 
 

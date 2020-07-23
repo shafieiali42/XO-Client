@@ -46,10 +46,14 @@ public class ScoreBoardResponse extends Response {
     @Override
     public void execute() {
 
+        System.out.println("vvvvvvvvvvvv");
+        if (Controller.getCurrentClient().getPlayer() !=null){
+            System.out.println("motherFuckerBitch  " + Controller.getCurrentClient().getPlayer().getUserName());
+        }
         Controller.setUserNames(userNames);
         Controller.setOnlineStatus(onlineStatus);
         Controller.setPoints(points);
-
+        Controller.setNeedRepaintScoreBoard(true);
 
         ScoreBoardPage.getInstance().setRepaint(true);
         ScoreBoardPage.getInstance().repaint();

@@ -17,11 +17,10 @@ public class ClientMain {
 
 
     public static void main(String[] args) {
-        Client client = new Client("localhost", 6969);
+        Client client = new Client("localhost", 1011);
         Controller.setCurrentClient(client);
         Controller.getCurrentClient().start();
         GraphicLoop.getInstance().start();
         myMainFrame.setContentPane(new LogInPage());
-
     }
 }

@@ -15,6 +15,7 @@ public class LogOutResponse extends Response  {
     @Override
     public void execute() {
         if (this.success){
+            Controller.getCurrentClient().setAuthtoken(null);
             Controller.getCurrentClient().setPlayer(null);
             ClientMain.getMyMainFrame().setContentPane(new LogInPage());
         }

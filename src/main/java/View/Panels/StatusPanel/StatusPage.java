@@ -1,11 +1,15 @@
 package View.Panels.StatusPanel;
 
 import Controller.Controller;
+import Main.ClientMain;
 import Util.Constants.Constant;
 import Util.OtherClasses.LengthOfMessage;
+import View.Panels.MainMenu.MainMenuPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class StatusPage extends JPanel {
@@ -19,6 +23,9 @@ public class StatusPage extends JPanel {
     private int loose;
     private int points;
     private boolean repaint = false;
+    private JButton backBtn;
+    private Color colorOfTextOfBtn = new Color(255, 0, 0);
+    private Color colorOfBtn = new Color(48, 48, 45);
 
 
     public StatusPage() {
@@ -26,7 +33,30 @@ public class StatusPage extends JPanel {
         height = Constant.heightOfMainFrame;
         setSize(width, height);
         setBackground(Color.yellow);
+        initBackBtn();
         setLayout(null);
+    }
+
+
+
+    public void designBtn(JButton btn) {
+        btn.setSize(90, 90);
+        btn.setFont(new Font("TimesRoman", Font.ITALIC, 20));
+        btn.setForeground(colorOfTextOfBtn);
+        btn.setBackground(colorOfBtn);
+
+    }
+
+    private void initBackBtn() {
+        backBtn = new JButton("Back");
+        designBtn(backBtn);
+        backBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
+            }
+        });
+        add(backBtn);
     }
 
 
