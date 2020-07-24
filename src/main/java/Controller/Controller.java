@@ -1,7 +1,11 @@
 package Controller;
 
 import Client.Client;
+import Main.ClientMain;
+import Model.Board.Board;
 import Model.Player.Player;
+import View.Models.BoardPanel;
+import View.Panels.GamePanel.GamePage;
 import View.Panels.StatusPanel.StatusPage;
 
 import java.util.ArrayList;
@@ -17,6 +21,19 @@ public class Controller {
     private static boolean needRepaintScoreBoard;
 
 
+    public static void showBoard(Board board,String friendlyName,String friendlyIcon,
+                                 String enemyName,String enemyIcon,String turn,boolean finished){
+
+        BoardPanel boardPanel=new BoardPanel();
+        for (int i = 0; i < board.getBoard().size(); i++) {
+            boardPanel.getTilePanels().get(i).setTileStatus(board.getBoard().get(i));
+        }
+        GamePage gamePage=new GamePage(boardPanel);
+        gamePage.setFriendlyName(friendlyName); gamePage.setFriendlyIcon(friendlyIcon);
+        gamePage.setEnemyName(enemyName); gamePage.setEnemyIcon(enemyIcon);
+        gamePage.setTurn(turn);
+        ClientMain.getMyMainFrame().setContentPane(gamePage);
+    }
 
 
     public static boolean isNeedRepaintScoreBoard() {

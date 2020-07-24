@@ -38,6 +38,14 @@ public class Player {
 
 
 
+    @Override
+    public boolean equals(Object obj) {
+        Player player=(Player)obj;
+        return this.userName.equals(player.userName);
+    }
+
+
+
 
 
     //getter and setters

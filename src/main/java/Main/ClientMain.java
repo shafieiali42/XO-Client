@@ -3,6 +3,7 @@ package Main;
 import Client.Client;
 import Controller.Controller;
 import View.Loop.GraphicLoop;
+import View.Models.BoardPanel;
 import View.Panels.LogInPanel.LogInPage;
 import View.Panels.MyMainFrame.MyMainFrame;
 import View.Panels.ScoreBoard.ScoreBoardPage;

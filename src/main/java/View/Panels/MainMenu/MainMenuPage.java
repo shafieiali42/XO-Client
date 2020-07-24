@@ -3,6 +3,8 @@ package View.Panels.MainMenu;
 import Controller.Controller;
 import Main.ClientMain;
 import Util.Constants.Constant;
+import View.Models.BoardPanel;
+import View.Panels.GamePanel.GamePage;
 import View.Panels.ScoreBoard.ScoreBoardPage;
 import View.Panels.StatusPanel.StatusPage;
 
@@ -120,8 +122,6 @@ public class MainMenuPage extends JPanel {
                 Controller.getCurrentClient().sendShowScoreBoardRequest();
                 ScoreBoardPage scoreBoardPage=new ScoreBoardPage();
                 ClientMain.getMyMainFrame().setContentPane(scoreBoardPage);
-
-
             }
         });
         menuPanel.add(scoreBoardBtn);
@@ -137,7 +137,9 @@ public class MainMenuPage extends JPanel {
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Controller.getCurrentClient().sendPlayRequest();
+                GamePage gamePage=new GamePage(new BoardPanel());
+                ClientMain.getMyMainFrame().setContentPane(gamePage);
 
             }
         });

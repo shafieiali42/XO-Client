@@ -4,17 +4,22 @@ import Util.Constants.Constant;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class BoardPanel extends JPanel {
 
-    private ArrayList<Tile> tiles;
+    private ArrayList<TilePanel> tilePanels;
 
     public BoardPanel() {
-        super(new GridLayout(7, 7));
+        setLayout(new GridLayout(7, 7));
+        setSize(Constant.boardWidth,Constant.boardHeight);
+        setBackground(Color.yellow);
+        tilePanels =new ArrayList<>();
         initTiles();
         drawBoard();
-        setSize(Constant.boardWidth,Constant.boardHeight);
+
 
 
     }
@@ -22,30 +27,39 @@ public class BoardPanel extends JPanel {
 
     private void initTiles() {
         for (int i = 0; i < 49; i++) {
-            Tile tile=new Tile(0);
-            this.tiles.add(tile);
+            TilePanel tilePanel =new TilePanel(i);
+            this.tilePanels.add(tilePanel);
         }
     }
 
     private void drawBoard(){
-        for (Tile tile:this.tiles){
-            this.add(tile);
+        for (TilePanel tilePanel :this.tilePanels){
+            this.add(tilePanel);
         }
     }
 
 
     @Override
-    protected void paintComponent(Graphics g) {
-        this.removeAll();
-        drawBoard();
-        repaint();
-        revalidate();
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+//        this.removeAll();
+//        drawBoard();
+//        setBackground(Color.yellow);
     }
 
 
 
 
+    //getter and setters
+    //********************
 
+    public ArrayList<TilePanel> getTilePanels() {
+        return tilePanels;
+    }
+
+    public void setTilePanels(ArrayList<TilePanel> tilePanels) {
+        this.tilePanels = tilePanels;
+    }
 
 
 }
