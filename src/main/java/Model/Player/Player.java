@@ -38,6 +38,10 @@ public class Player {
 
 
 
+    public void setScore(){
+        this.score=wins-loose;
+    }
+
     @Override
     public boolean equals(Object obj) {
         Player player=(Player)obj;

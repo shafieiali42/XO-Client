@@ -108,6 +108,22 @@ public class Client extends Thread {
 
 
 
+    public void sendStatusRequest(){
+        System.out.println("send status request");
+        Request request=new StatusRequest(authtoken);
+        String message=new Gson().toJson(request);
+        sendRequest(authtoken,"StatusRequest",message);
+    }
+
+
+    public void sendEndGameRequest(){
+        System.out.println("send end game request");
+        Request request =new EndGameRequest(authtoken);
+        String message=new Gson().toJson(request);
+        sendRequest(authtoken,"EndGameRequest",message);
+    }
+
+
     public void sendPlayPieceRequest(int targetTileId){
         System.out.println("send play piece request");
         Request request=new PlayPieceRequest(authtoken,targetTileId);

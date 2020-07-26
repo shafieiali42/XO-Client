@@ -3,6 +3,8 @@ package RequestAndResponse.Response;
 import Controller.Controller;
 import Model.Board.Board;
 
+import java.util.ArrayList;
+
 public class PlayPieceResponse extends Response {
 
 
@@ -14,13 +16,13 @@ public class PlayPieceResponse extends Response {
     private String friendlyIcon;
     private String enemyName;
     private String enemyIcon;
-    private boolean finished;
+    private String resultList;
 
 
 
-    public PlayPieceResponse(Board board,String friendlyName,
-                             String friendlyIcon,String enemyName,String enemyIcon,
-                             String turn,boolean finished) {
+    public PlayPieceResponse(Board board, String friendlyName,
+                             String friendlyIcon, String enemyName, String enemyIcon,
+                             String turn, String resultList) {
 
 
 
@@ -30,15 +32,18 @@ public class PlayPieceResponse extends Response {
         this.enemyName=enemyName;
         this.enemyIcon=enemyIcon;
         this.turn=turn;
-        this.finished=finished;
+        this.resultList = resultList;
 
     }
-
 
     @Override
     public void execute() {
         System.out.println("Received play piece Response");
-        Controller.showBoard(board,friendlyName,friendlyIcon,enemyName,enemyIcon,turn,finished);
+        if (board!=null){
+            Controller.showBoard(board,friendlyName,friendlyIcon,enemyName,enemyIcon,turn,resultList);
+        }else {
+
+        }
     }
 
 
@@ -96,12 +101,12 @@ public class PlayPieceResponse extends Response {
         this.enemyIcon = enemyIcon;
     }
 
-    public boolean isFinished() {
-        return finished;
+    public String  getResultList() {
+        return resultList;
     }
 
-    public void setFinished(boolean finished) {
-        this.finished = finished;
+    public void setFinished(String  resultList) {
+        this.resultList = resultList;
     }
 
 

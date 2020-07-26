@@ -1,11 +1,10 @@
 package RequestAndResponse.Requests;
 
+public class EndGameRequest extends Request {
 
-public class PlayRequest extends Request {
 
-
-    public PlayRequest(String applicator) {
-        this.setRequestType("PlayRequest");
+    public EndGameRequest(String applicator) {
+        this.setRequestType("EndGameRequest");
         this.setApplicator(applicator);
     }
 

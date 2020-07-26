@@ -1,14 +1,6 @@
 package RequestAndResponse.Requests;
 
 
-import Model.Player.Player;
-import RequestAndResponse.Response.LogInResponse;
-import RequestAndResponse.Response.Response;
-
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
 public class LogInRequest extends Request {
 
     private String userName;

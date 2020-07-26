@@ -22,6 +22,7 @@ public class TilePanel extends JPanel implements MouseListener {
         setBackground(Color.red);
         this.tileId = tileId;
         this.isOccupied = false;
+//        tileStatus=TileStatus.EMPTY;
         addMouseListener(this);
     }
 
@@ -32,8 +33,7 @@ public class TilePanel extends JPanel implements MouseListener {
                 g2d.drawLine(0, 0, this.getWidth(), this.getHeight());
                 g2d.drawLine(this.getWidth(), 0, 0, this.getHeight());
             } else if (tileStatus.equals(TileStatus.O)) {
-                g2d.drawOval(this.getWidth() / 2, this.getHeight() / 2,
-                        this.getWidth() / 2, this.getHeight() / 2);
+                g2d.drawOval(0, 0, this.getWidth(), this.getHeight());
             }
         }
     }
@@ -52,15 +52,14 @@ public class TilePanel extends JPanel implements MouseListener {
         drawState(this.tileStatus, g2d);
     }
 
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (!isOccupied) {
+        if (!isOccupied && !tileStatus.equals(TileStatus.O) && !tileStatus.equals(TileStatus.X)) {
             this.isOccupied = true;
             Controller.getCurrentClient().sendPlayPieceRequest(this.tileId);
 
         }
-
-
     }
 
 
@@ -111,4 +110,6 @@ public class TilePanel extends JPanel implements MouseListener {
     public void setTileStatus(TileStatus tileStatus) {
         this.tileStatus = tileStatus;
     }
+
+
 }

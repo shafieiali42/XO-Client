@@ -18,10 +18,7 @@ public class StatusPage extends JPanel {
     private int width;
     private int height;
 
-    private String userName;
-    private int wins;
-    private int loose;
-    private int points;
+
     private boolean repaint = false;
     private JButton backBtn;
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
@@ -67,7 +64,8 @@ public class StatusPage extends JPanel {
         Graphics2D graphics2D = (Graphics2D) g;
 
         if (repaint) {
-            drawStatusPage(userName, wins, loose, points, graphics2D);
+            drawStatusPage(Controller.getUserNameInStatus(), Controller.getWins(), Controller.getLoose(),
+                    Controller.getScore(), graphics2D);
         }
 
 
@@ -103,37 +101,6 @@ public class StatusPage extends JPanel {
     //getter and setters
     //*********************
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public int getWins() {
-        return wins;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
-
-    public int getLoose() {
-        return loose;
-    }
-
-    public void setLoose(int loose) {
-        this.loose = loose;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
 
     public boolean isRepaint() {
         return repaint;

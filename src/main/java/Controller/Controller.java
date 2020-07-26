@@ -20,9 +20,14 @@ public class Controller {
     private static ArrayList<Integer> points=new ArrayList<>();
     private static boolean needRepaintScoreBoard;
 
+    private static String userNameInStatus;
+    private static int wins;
+    private static int loose;
+    private static int score;
+
 
     public static void showBoard(Board board,String friendlyName,String friendlyIcon,
-                                 String enemyName,String enemyIcon,String turn,boolean finished){
+                                 String enemyName,String enemyIcon,String turn,String resultList){
 
         BoardPanel boardPanel=new BoardPanel();
         for (int i = 0; i < board.getBoard().size(); i++) {
@@ -33,8 +38,43 @@ public class Controller {
         gamePage.setEnemyName(enemyName); gamePage.setEnemyIcon(enemyIcon);
         gamePage.setTurn(turn);
         ClientMain.getMyMainFrame().setContentPane(gamePage);
+
+        if (!resultList.equalsIgnoreCase("null")){
+            gamePage.setWinner(resultList);
+            gamePage.setShowWinner(true);
+        }
     }
 
+
+
+//    public static void showStatus(Player player, StatusPage statusPage){
+//        statusPage.setUserName(player.getUserName());
+//        statusPage.setWins(player.getWins());
+//        statusPage.setLoose(player.getLoose());
+//        statusPage.setPoints(player.getScore());
+//        statusPage.setRepaint(true);
+//        statusPage.repaint();
+//        statusPage.revalidate();
+//    }
+
+
+
+
+
+
+
+
+
+    //getter and setters
+    //********************
+
+    public static Client getCurrentClient() {
+        return currentClient;
+    }
+
+    public static void setCurrentClient(Client currentClient) {
+        Controller.currentClient = currentClient;
+    }
 
     public static boolean isNeedRepaintScoreBoard() {
         return needRepaintScoreBoard;
@@ -68,33 +108,36 @@ public class Controller {
         Controller.points = points;
     }
 
-    public static void showStatus(Player player, StatusPage statusPage){
-        statusPage.setUserName(player.getUserName());
-        statusPage.setWins(player.getWins());
-        statusPage.setLoose(player.getLoose());
-        statusPage.setPoints(player.getScore());
-        statusPage.setRepaint(true);
-        statusPage.repaint();
-        statusPage.revalidate();
+    public static String getUserNameInStatus() {
+        return userNameInStatus;
     }
 
-
-
-
-
-
-
-
-
-    //getter and setters
-    //********************
-
-    public static Client getCurrentClient() {
-        return currentClient;
+    public static void setUserNameInStatus(String userNameInStatus) {
+        Controller.userNameInStatus = userNameInStatus;
     }
 
-    public static void setCurrentClient(Client currentClient) {
-        Controller.currentClient = currentClient;
+    public static int getWins() {
+        return wins;
+    }
+
+    public static void setWins(int wins) {
+        Controller.wins = wins;
+    }
+
+    public static int getLoose() {
+        return loose;
+    }
+
+    public static void setLoose(int loose) {
+        Controller.loose = loose;
+    }
+
+    public static int getScore() {
+        return score;
+    }
+
+    public static void setScore(int score) {
+        Controller.score = score;
     }
 
 }

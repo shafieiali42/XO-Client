@@ -4,8 +4,9 @@ package RequestAndResponse.Response;
 import Controller.Controller;
 import Model.Board.Board;
 
-public class StartGameResponse extends Response {
+import java.util.ArrayList;
 
+public class StartGameResponse extends Response {
 
 
     private Board board;
@@ -16,26 +17,25 @@ public class StartGameResponse extends Response {
     private String enemyIcon;
 
 
-    public StartGameResponse(Board board,String friendlyName,
-                             String friendlyIcon,String enemyName,String enemyIcon,String turn) {
+    public StartGameResponse(Board board, String friendlyName,
+                             String friendlyIcon, String enemyName, String enemyIcon, String turn) {
 
-        this.board=board;
-        this.friendlyName=friendlyName;
-        this.friendlyIcon=friendlyIcon;
-        this.enemyName=enemyName;
-        this.enemyIcon=enemyIcon;
-        this.turn=turn;
+        this.board = board;
+        this.friendlyName = friendlyName;
+        this.friendlyIcon = friendlyIcon;
+        this.enemyName = enemyName;
+        this.enemyIcon = enemyIcon;
+        this.turn = turn;
     }
 
 
     @Override
     public void execute() {
         System.out.println("Received start game Response");
-        Controller.showBoard(board,friendlyName,friendlyIcon,enemyName,enemyIcon,turn,false);
-
-
+        if (board != null) {
+            Controller.showBoard(board, friendlyName, friendlyIcon, enemyName, enemyIcon, turn, "null");
+        }
     }
-
 
 
     //getter and setters

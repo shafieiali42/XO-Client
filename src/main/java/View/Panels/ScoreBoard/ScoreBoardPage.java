@@ -68,8 +68,7 @@ public class ScoreBoardPage extends JPanel {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
         if (Controller.isNeedRepaintScoreBoard()) {
-            System.out.println("123456789" +
-                    "");
+
 //            Controller.getCurrentClient().sendShowScoreBoardRequest();
             drawScoreBoardPage(Controller.getUserNames(), Controller.getOnlineStatus(), Controller.getPoints(), graphics2D);
         }
@@ -103,7 +102,6 @@ public class ScoreBoardPage extends JPanel {
         for (int i = 0; i < names.size(); i++) {
 //            System.out.println(names);
             if (names.get(i) != null) {
-                System.out.println(onlineOrOffline);
                 String playerState = names.get(i) + xSpace + onlineOrOffline.get(i) + xSpace + points.get(i);
                 int xCoordinate = (Constant.widthOfMainFrame - LengthOfMessage.lengthOfMessage(playerState, g2d)) / 2;
                 g2d.drawString(playerState, xCoordinate, (i + 1) * ySpace);

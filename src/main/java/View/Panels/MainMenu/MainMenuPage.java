@@ -99,9 +99,8 @@ public class MainMenuPage extends JPanel {
         statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StatusPage statusPage=new StatusPage();
-                ClientMain.getMyMainFrame().setContentPane(statusPage);
-                Controller.showStatus(Controller.getCurrentClient().getPlayer(),statusPage);
+                Controller.getCurrentClient().sendStatusRequest();
+
             }
         });
         menuPanel.add(statusBtn);
@@ -138,9 +137,6 @@ public class MainMenuPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendPlayRequest();
-                GamePage gamePage=new GamePage(new BoardPanel());
-                ClientMain.getMyMainFrame().setContentPane(gamePage);
-
             }
         });
         menuPanel.add(multiPlayer);
