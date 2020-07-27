@@ -2,11 +2,11 @@ package RequestAndResponse.Response;
 
 import Controller.Controller;
 import Main.ClientMain;
-import Model.Player.Player;
-import View.Panels.ScoreBoard.ScoreBoardPage;
+
+
 import View.Panels.StatusPanel.StatusPage;
 
-import java.util.ArrayList;
+
 
 public class StatusResponse extends Response {
 

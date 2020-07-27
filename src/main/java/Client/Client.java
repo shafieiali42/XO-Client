@@ -108,6 +108,15 @@ public class Client extends Thread {
 
 
 
+    public void sendScreenRecorderRequest(){
+        System.out.println("send screen recorder request");
+        Request request =new ScreenRecorderRequest(authtoken);
+        String message=new Gson().toJson(request);
+        sendRequest(authtoken,"ScreenRecorderRequest",message);
+
+    }
+
+
     public void sendStatusRequest(){
         System.out.println("send status request");
         Request request=new StatusRequest(authtoken);

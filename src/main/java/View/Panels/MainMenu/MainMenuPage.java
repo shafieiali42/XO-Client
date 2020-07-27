@@ -65,7 +65,7 @@ public class MainMenuPage extends JPanel {
         screenRecordBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Controller.getCurrentClient().sendScreenRecorderRequest();
             }
         });
         menuPanel.add(screenRecordBtn);

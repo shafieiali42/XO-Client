@@ -1,8 +1,8 @@
 package RequestAndResponse.Response;
 
 import Controller.Controller;
-import Main.ClientMain;
-import Model.Player.Player;
+
+
 import View.Panels.ScoreBoard.ScoreBoardPage;
 
 import java.util.ArrayList;
@@ -15,32 +15,11 @@ public class ScoreBoardResponse extends Response {
     private ArrayList<Integer> points;
 
 
-    public ScoreBoardResponse(ArrayList<Player> players) {
-        initUserNameList(players);
-        initOnlineStatusList(players);
-        initPointsList(players);
+    public ScoreBoardResponse() {
+
     }
 
-    private void initPointsList(ArrayList<Player> players) {
-        this.points = new ArrayList<>();
-        for (Player player : players) {
-            this.points.add(player.getScore());
-        }
-    }
 
-    private void initOnlineStatusList(ArrayList<Player> players) {
-        this.onlineStatus = new ArrayList<>();
-        for (Player player : players) {
-            this.onlineStatus.add(player.isOnlineStatus());
-        }
-    }
-
-    private void initUserNameList(ArrayList<Player> players) {
-        this.userNames = new ArrayList<>();
-        for (Player player : players) {
-            this.userNames.add(player.getUserName());
-        }
-    }
 
 
     @Override
