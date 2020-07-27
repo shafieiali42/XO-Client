@@ -3,10 +3,8 @@ package Controller;
 import Client.Client;
 import Main.ClientMain;
 import Model.Board.Board;
-import Model.Player.Player;
 import View.Models.BoardPanel;
 import View.Panels.GamePanel.GamePage;
-import View.Panels.StatusPanel.StatusPage;
 import View.Panels.screenRecorderPage.ScreenRecorderPage;
 
 import javax.swing.*;
@@ -72,15 +70,6 @@ public class Controller {
     }
 
 
-//    public static void showStatus(Player player, StatusPage statusPage){
-//        statusPage.setUserName(player.getUserName());
-//        statusPage.setWins(player.getWins());
-//        statusPage.setLoose(player.getLoose());
-//        statusPage.setPoints(player.getScore());
-//        statusPage.setRepaint(true);
-//        statusPage.repaint();
-//        statusPage.revalidate();
-//    }
 
 
     //getter and setters
