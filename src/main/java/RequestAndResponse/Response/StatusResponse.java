@@ -29,9 +29,7 @@ public class StatusResponse extends Response {
     @Override
     public void execute() {
 
-        if (Controller.getCurrentClient().getPlayer() !=null){
-            System.out.println("  " + Controller.getCurrentClient().getPlayer().getUserName());
-        }
+
         Controller.setUserNameInStatus(userName);
         Controller.setWins(wins);
         Controller.setLoose(loose);

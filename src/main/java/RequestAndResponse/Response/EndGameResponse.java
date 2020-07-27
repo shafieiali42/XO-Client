@@ -1,16 +1,16 @@
 package RequestAndResponse.Response;
 
-import Model.Player.Player;
+import Controller.Controller;
+import Main.ClientMain;
 
-import java.util.ArrayList;
+import View.Panels.MainMenu.MainMenuPage;
+
+
 
 public class EndGameResponse extends Response {
 
 
-
-
     public EndGameResponse() {
-
 
 
     }
@@ -18,6 +18,9 @@ public class EndGameResponse extends Response {
 
     @Override
     public void execute() {
+        System.out.println("execute end game response"+ Controller.getCurrentClient().getPlayer().getUserName());
+        ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
 
     }
+
 }

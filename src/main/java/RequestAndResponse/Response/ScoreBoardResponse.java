@@ -25,9 +25,6 @@ public class ScoreBoardResponse extends Response {
     @Override
     public void execute() {
 
-        if (Controller.getCurrentClient().getPlayer() !=null){
-            System.out.println("  " + Controller.getCurrentClient().getPlayer().getUserName());
-        }
         Controller.setUserNames(userNames);
         Controller.setOnlineStatus(onlineStatus);
         Controller.setPoints(points);

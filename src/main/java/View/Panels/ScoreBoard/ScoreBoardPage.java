@@ -100,7 +100,6 @@ public class ScoreBoardPage extends JPanel {
 
 
         for (int i = 0; i < names.size(); i++) {
-//            System.out.println(names);
             if (names.get(i) != null) {
                 String playerState = names.get(i) + xSpace + onlineOrOffline.get(i) + xSpace + points.get(i);
                 int xCoordinate = (Constant.widthOfMainFrame - LengthOfMessage.lengthOfMessage(playerState, g2d)) / 2;
@@ -129,7 +128,6 @@ public class ScoreBoardPage extends JPanel {
 
     public void setRepaint(boolean repaint) {
         this.repaint = repaint;
-        System.out.println(repaint + " " + this.repaint);
     }
 
 

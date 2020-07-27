@@ -53,7 +53,6 @@ public class Controller {
 
     public static void showScreenBoard(int index) {
 
-        System.out.println(boards);
         if (index < 0) {
             JOptionPane.showMessageDialog(null, "its the first page",
                     "Error", JOptionPane.ERROR_MESSAGE);

@@ -34,6 +34,7 @@ public class GamePage extends JPanel {
     public GamePage(BoardPanel boardPanel) {
         setSize(Constant.widthOfMainFrame, Constant.heightOfMainFrame);
         setLayout(null);
+        setBackground(Color.gray);
         this.boardPanel = boardPanel;
         this.addPanel(boardPanel, 0, 0, Constant.boardWidth, Constant.boardHeight);
         initBackBtn();

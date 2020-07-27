@@ -28,6 +28,7 @@ public class ScreenRecorderPage extends JPanel {
         setLayout(null);
         this.boardPanel = boardPanel;
         this.addPanel(boardPanel, 0, 0, Constant.boardWidth, Constant.boardHeight);
+        setBackground(Color.gray);
         initBackBtn();
         initNextBoardBtn();
         initPreviousBoardBtn();
@@ -36,8 +37,8 @@ public class ScreenRecorderPage extends JPanel {
     private void initPreviousBoardBtn() {
         previousBoardBan = new JButton("Previous");
         designBtn(previousBoardBan);
-        previousBoardBan.setBounds(320, Constant.boardHeight + 100,
-                previousBoardBan.getWidth(), previousBoardBan.getHeight());
+        previousBoardBan.setBounds(380, Constant.boardHeight + 100,
+                previousBoardBan.getWidth()+20, previousBoardBan.getHeight());
         previousBoardBan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +55,6 @@ public class ScreenRecorderPage extends JPanel {
         nextBoardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("index: "+(boardIndex+1));
                     Controller.showScreenBoard(boardIndex+1);
             }
         });
@@ -63,7 +63,7 @@ public class ScreenRecorderPage extends JPanel {
 
 
     public void designBtn(JButton btn) {
-        btn.setSize(90, 90);
+        btn.setSize(110, 90);
         btn.setFont(new Font("TimesRoman", Font.ITALIC, 20));
         btn.setForeground(colorOfTextOfBtn);
         btn.setBackground(colorOfBtn);
